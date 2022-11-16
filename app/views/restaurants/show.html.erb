@@ -1,0 +1,30 @@
+<div class="container">
+<h1 class="my-3"><%= @restaurant.name %></h1>
+
+<p> Address: <%= @restaurant.address %></p>
+
+<p> Phone number: <%= @restaurant.phone_number %></p>
+
+<p> Category: <%= @restaurant.category %></p>
+
+<p>________________________________________________</p>
+
+<h2>Reviews of <%= @restaurant.name %></h2>
+
+<ul>
+<% @restaurant.reviews.each do |review| %>
+  <li><%= review.content %> - rating: <%= review.rating %>/5</li>
+<% end %>
+</ul>
+
+<%= link_to "Back to list", restaurants_path %>
+
+<div class="container">
+<h1>Add a review</h1>
+<%= simple_form_for [@restaurant, @review] do |f| %>
+  <%= f.input :content %>
+  <%= f.input :rating, collection: [0, 1, 2, 3, 4, 5] %>
+  <%= f.submit %>
+<% end %>
+</div>
+</div>
